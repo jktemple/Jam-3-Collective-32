@@ -56,6 +56,7 @@ public class rythemManager : MonoBehaviour
                     if(dists[i] < realPointer.transform.position.x + scoringWidth && dists[i] > realPointer.transform.position.x - scoringWidth)
                     {
                         didScore = true;
+                        targets[i].GetComponentInChildren<Renderer>().material.SetColor("_Color", Color.green);
                     }
                 }
                 if (didScore) { score++; }
