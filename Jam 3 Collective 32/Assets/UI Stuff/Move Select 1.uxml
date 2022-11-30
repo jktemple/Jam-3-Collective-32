@@ -1,0 +1,28 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Stuff/UI%20StyleSheet%201.uss?fileID=7433441132597879392&amp;guid=b521ab91805cb734698c0b33d4069c2a&amp;type=3#UI StyleSheet 1" />
+    <ui:VisualElement style="flex-direction: row; margin-left: 36px; margin-right: 36px; margin-top: 36px; margin-bottom: 36px; height: 995px;">
+        <ui:GroupBox style="flex-direction: column; height: 996px; flex-basis: auto; justify-content: flex-start; width: 137px; margin-left: 5px;">
+            <ui:GroupBox name="Wizard1" style="height: 105px; width: 120px; flex-direction: column-reverse; margin-top: 82px; margin-bottom: 5px;">
+                <ui:Button text="Word 4" display-tooltip-when-elided="true" />
+                <ui:Button text="Word 3" display-tooltip-when-elided="true" />
+                <ui:Button text="Word 2" display-tooltip-when-elided="true" />
+                <ui:Button text="Word 1" display-tooltip-when-elided="true" />
+                <ui:Label text="Wizard 1" display-tooltip-when-elided="true" style="-unity-text-align: upper-center;" />
+            </ui:GroupBox>
+            <ui:GroupBox name="Wizard2" style="height: 134px; width: 122px; flex-direction: column-reverse; margin-top: 82px; margin-bottom: 5px;">
+                <ui:Button text="Word 4" display-tooltip-when-elided="true" />
+                <ui:Button text="Word 3" display-tooltip-when-elided="true" />
+                <ui:Button text="Word 2" display-tooltip-when-elided="true" />
+                <ui:Button text="Word 1" display-tooltip-when-elided="true" />
+                <ui:Label text="Wizard 2" display-tooltip-when-elided="true" style="-unity-text-align: upper-center;" />
+            </ui:GroupBox>
+            <ui:GroupBox name="Wizard3" style="height: 134px; width: 122px; flex-direction: column-reverse; margin-top: 82px; margin-bottom: 5px;">
+                <ui:Button text="Word 4" display-tooltip-when-elided="true" />
+                <ui:Button text="Word 3" display-tooltip-when-elided="true" />
+                <ui:Button text="Word 2" display-tooltip-when-elided="true" />
+                <ui:Button text="Word 1" display-tooltip-when-elided="true" />
+                <ui:Label text="Wizard 3" display-tooltip-when-elided="true" style="-unity-text-align: upper-center;" />
+            </ui:GroupBox>
+        </ui:GroupBox>
+    </ui:VisualElement>
+</ui:UXML>
