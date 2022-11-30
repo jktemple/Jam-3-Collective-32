@@ -4,22 +4,9 @@ using UnityEngine;
 
 public class WordManager : MonoBehaviour
 {
+  
 
-    [System.Serializable]
-    public class Words
-    {
-        public string word;
-        public int ID;
-        public float[] Notes;
-        
 
-        //find an Attribute that lets you select the element from 3 choices
-        public string element;
-        public string stance;
-        public string next;
-
-    }    
-    
     public List<Words> wordList = new List<Words>();
     
     public static WordManager instance;
