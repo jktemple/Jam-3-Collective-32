@@ -1247,6 +1247,10 @@ PrefabInstance:
       propertyPath: unitName
       value: Player 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7892646770378328046, guid: 7b5de5df7c320c24eb0ded3bc0b8ce1e, type: 3}
+      propertyPath: words.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7892646770378328047, guid: 7b5de5df7c320c24eb0ded3bc0b8ce1e, type: 3}
       propertyPath: m_Name
       value: Player 1

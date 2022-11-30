@@ -20,6 +20,8 @@ public class Unit : MonoBehaviour
     public int GetStance() { return (int)stance; }      // Stance Getter
     public int GetElement() { return (int)element; }    // Element Getter
 
+    public Words[] words;   
+
     // Stance Setter
     public void ChangeStance(int s)
     {
