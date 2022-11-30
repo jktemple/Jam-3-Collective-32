@@ -11,8 +11,8 @@ public class Words
     
 
     //find an Attribute that lets you select the element from 3 choices
-    public string element;
-    public string stance;
+    public Element element;
+    public Stance stance;
     public string next;
 
 }  
