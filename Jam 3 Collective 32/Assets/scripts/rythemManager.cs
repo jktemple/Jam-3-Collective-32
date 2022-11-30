@@ -25,48 +25,65 @@ public class rythemManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        run();
+        //example of how to call, remove for actual implementation
+        List<float> temp = new List<float>();
+        temp.Add(10);
+        temp.Add(5);
+        temp.Add(10);
+        temp.Add(15);
+        temp.Add(3);
+        temp.Add(5);
+        run(temp);
     }
 
     // Update is called once per frame
     void Update()
     {
+        //run if pointer exists
         if (realPointer != null)
         {
+            //update pointer position
             realPointer.transform.Translate(new Vector3(stepDist, 0, 0));
+            //check if pointer is on right edge of screen
             if (realPointer.transform.position.x > Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0)).x)
             {
+                //remove all pointer and targets, and empty target list
                 Destroy(realPointer);
-                foreach(GameObject target in targets)
-                {
-                    Destroy(target);
-                }
                 while (targets.Count > 0)
                 {
+                    Destroy(targets[0]);
                     targets.RemoveAt(0);
+                    dists.RemoveAt(0);
                 }
                 done = true;
 
             }
+            //check for clicks on queue
             if (Input.GetMouseButtonDown(0))
             {
                 bool didScore = false;
                 for(int i = 0; i<dists.Count;i++)
                 {
+                    //check if scoring range is valid
                     if(dists[i] < realPointer.transform.position.x + scoringWidth && dists[i] > realPointer.transform.position.x - scoringWidth)
                     {
+                        //allow score increse
                         didScore = true;
+                        //change color
                         targets[i].GetComponentInChildren<Renderer>().material.SetColor("_Color", Color.green);
                     }
                 }
+                //update score as necessasary
                 if (didScore) { score++; }
                 else { score--; }
             }
         }
     }
 
-    void run()
+    void run(List<float> newTargets)
     {
+        times = newTargets;
+        score = 0;
         done = false;
         realPointer = Instantiate(pointerSprite, Camera.main.ViewportToWorldPoint(new Vector3(0, 0.5f, Camera.main.nearClipPlane)), Quaternion.identity);
         pointerSprite.transform.position = (Camera.main.ViewportToWorldPoint(new Vector3(0,0.5f,Camera.main.nearClipPlane)));
