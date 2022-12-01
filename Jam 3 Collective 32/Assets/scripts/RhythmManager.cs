@@ -7,6 +7,9 @@ public class RhythmManager : MonoBehaviour
     //prefabs to instantiate
     public GameObject pointerSprite;
     public GameObject targetSprite;
+    public GameObject backgroundLine;
+    public GameObject screenBlank;
+    public Sprite doneTarget;
     //the time between nodes, with the last time being interpretied as the delay after the puzzle
     public List<float> times;
     //returns a score for the run
@@ -16,7 +19,9 @@ public class RhythmManager : MonoBehaviour
 
     public float scoringWidth = 0.1f;
 
+    GameObject realLine;
     GameObject realPointer;
+    GameObject realBlank;
     //I don't know why but this lists don't work if they are private
     public List<GameObject> targets;
     public List<float> dists;
@@ -30,7 +35,6 @@ public class RhythmManager : MonoBehaviour
         worldXwidth = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0)).x - Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x;
 
         //example of how to call, remove for actual implementation
-        /*
         List<float> temp = new List<float>();
         temp.Add(1);
         temp.Add(0.5f);
@@ -39,7 +43,6 @@ public class RhythmManager : MonoBehaviour
         temp.Add(1);
         temp.Add(0.5f);
         run(temp);
-        */
     }
 
     // Update is called once per frame
@@ -55,6 +58,8 @@ public class RhythmManager : MonoBehaviour
             {
                 //remove all pointer and targets, and empty target list
                 Destroy(realPointer);
+                Destroy(realLine);
+                Destroy(realBlank);
                 while (targets.Count > 0)
                 {
                     Destroy(targets[0]);
@@ -76,7 +81,7 @@ public class RhythmManager : MonoBehaviour
                         //allow score increse
                         didScore = true;
                         //change color
-                        targets[i].GetComponentInChildren<Renderer>().material.SetColor("_Color", Color.green);
+                        targets[i].GetComponentInChildren<SpriteRenderer>().sprite = doneTarget;
                     }
                 }
                 //update score as necessasary
@@ -105,12 +110,14 @@ public class RhythmManager : MonoBehaviour
             acumulatedTime += Time;
             if (acumulatedTime != totalTime)
             {
-                targets.Add((GameObject)Instantiate(targetSprite, Camera.main.ViewportToWorldPoint(new Vector3(acumulatedTime / totalTime, 0.4f, Camera.main.nearClipPlane)), Quaternion.identity));
+                targets.Add((GameObject)Instantiate(targetSprite, Camera.main.ViewportToWorldPoint(new Vector3(acumulatedTime / totalTime, 0.5f, Camera.main.nearClipPlane)), Quaternion.identity));
             }
         }
         foreach(GameObject target in targets)
         {
             dists.Add(target.transform.position.x);
         }
+        realLine = Instantiate(backgroundLine, Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, Camera.main.nearClipPlane + 0.1f)), Quaternion.identity);
+        realBlank = Instantiate(screenBlank, Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, Camera.main.nearClipPlane + 0.2f)), Quaternion.identity);
     }
 }
