@@ -32,7 +32,7 @@ public class RhythmManager : MonoBehaviour
     //returns false while system is running
     public bool done = true;
 
-    public float scoringWidth = 0.1f;
+    public float scoringWidth = 10f;
 
     GameObject realLine;
     GameObject realPointer;
@@ -87,6 +87,7 @@ public class RhythmManager : MonoBehaviour
         wordlist[7].timeBefore = 0.27f;
         wordlist[7].timeAfter = 0.7f - wordlist[7].timeAfter;
 
+
         //////////////////////////
         //example of how to call, remove for actual implementation
         /*
@@ -101,8 +102,8 @@ public class RhythmManager : MonoBehaviour
         run(temp);
         */
         //call with wordParse
-        int[] testlist = { 0, 1, 2, 3, 4, 5, 6, 7 };
-        wordParse(testlist);
+        //int[] testlist = { 0, 1, 2, 3, 4, 5, 6, 7 };
+        //wordParse(testlist);
         //End example
         //////////////////////////
     }
@@ -127,16 +128,6 @@ public class RhythmManager : MonoBehaviour
                 checkScore();
             }
         }
-        //reset test **** TO BE REMOVED FOR IMPLEMENTATION
-        else
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                int[] testlist = { 0, 1, 2, 3, 4, 5, 6, 7 };
-                wordParse(testlist);
-            }
-        }
-        //////////////////////////
     }
 
     //runns through the queue of words
@@ -199,6 +190,7 @@ public class RhythmManager : MonoBehaviour
     //runs and updates the wordlist
     public void wordParse(int[] inputArray)
     {
+        done = false;
         List<float> outTimes = new List<float>();
         float temp = 0;
         foreach(int wordNum in inputArray)

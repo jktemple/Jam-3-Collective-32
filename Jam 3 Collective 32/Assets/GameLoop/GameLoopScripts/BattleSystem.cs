@@ -18,6 +18,7 @@ public class BattleSystem : MonoBehaviour
     public GameObject playerPrefab2;
     public GameObject playerPrefab3;
     public GameObject bossPrefab;
+    public RhythmManager rhythmSystem;
 
 
     // Unit Declaration 
@@ -37,6 +38,9 @@ public class BattleSystem : MonoBehaviour
 
     // Game State Declaration
     public BattleState state;
+
+    // Array for Rhythm minigame decloration
+    int[] wordArray = {1,0,2,0,3,0};
 
     // Game Start - Starts Game
     void Start()
@@ -119,16 +123,19 @@ public class BattleSystem : MonoBehaviour
         else if (state == BattleState.PLAYERTURN1)
         {
             playerUnit1.ChangeAttack(1);
+            wordArray[1] = 4;
             Debug.Log("Player1: Offensive");
         }
         else if (state == BattleState.PLAYERTURN2)
         {
             playerUnit2.ChangeAttack(1);
+            wordArray[3] = 4;
             Debug.Log("Player2: Offensive");
         }
         else if (state == BattleState.PLAYERTURN3)
         {
             playerUnit3.ChangeAttack(1);
+            wordArray[5] = 4;
             Debug.Log("Player3: Offensive");
         }
     }
@@ -143,16 +150,19 @@ public class BattleSystem : MonoBehaviour
         else if (state == BattleState.PLAYERTURN1)
         {
             playerUnit1.ChangeAttack(2);
+            wordArray[1] = 5;
             Debug.Log("Player1: Defensive");
         }
         else if (state == BattleState.PLAYERTURN2)
         {
             playerUnit2.ChangeAttack(2);
+            wordArray[3] = 5;
             Debug.Log("Player2: Defensive");
         }
         else if (state == BattleState.PLAYERTURN3)
         {
             playerUnit3.ChangeAttack(2);
+            wordArray[5] = 5;
             Debug.Log("Player3: Defensive");
         }
     }
@@ -167,16 +177,19 @@ public class BattleSystem : MonoBehaviour
         else if (state == BattleState.PLAYERTURN1)
         {
             playerUnit1.ChangeAttack(3);
+            wordArray[1] = 6;
             Debug.Log("Player1: AtkBuff");
         }
         else if (state == BattleState.PLAYERTURN2)
         {
             playerUnit2.ChangeAttack(3);
+            wordArray[3] = 6;
             Debug.Log("Player2: AtkBuff");
         }
         else if (state == BattleState.PLAYERTURN3)
         {
             playerUnit3.ChangeAttack(3);
+            wordArray[5] = 6;
             Debug.Log("Player3: AtkBuff");
         }
     }
@@ -191,16 +204,19 @@ public class BattleSystem : MonoBehaviour
         else if (state == BattleState.PLAYERTURN1)
         {
             playerUnit1.ChangeAttack(4);
+            wordArray[1] = 7;
             Debug.Log("Player1: DefBuff");
         }
         else if (state == BattleState.PLAYERTURN2)
         {
             playerUnit2.ChangeAttack(4);
+            wordArray[3] = 7;
             Debug.Log("Player2: DefBuff");
         }
         else if (state == BattleState.PLAYERTURN3)
         {
             playerUnit3.ChangeAttack(4);
+            wordArray[5] = 7;
             Debug.Log("Player3: DefBuff");
         }
     }
@@ -229,8 +245,12 @@ public class BattleSystem : MonoBehaviour
     IEnumerator RhythmTurn()
     {
         // Rhythm Stuff Goes Here
-        dialogueText.text = "Rhythm";
-        yield return new WaitForSeconds(2f);
+        dialogueText.text = "Rhythm";  
+        rhythmSystem.wordParse(wordArray);
+        while (!rhythmSystem.done)
+        {
+            yield return new WaitForSeconds(0.25f);
+        }
         state = BattleState.PLAYERATTACK;
         StartCoroutine(PlayerAttack());
     }
