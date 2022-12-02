@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9a0c627159475440bb226b6b9259398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Boss
+  unitName: Ferrus Hawk
   maxHP: 300
   currentHP: 300
   stance: 2
@@ -55,6 +55,7 @@ MonoBehaviour:
   attack: 0
   atkBuff: 0
   defBuff: 0
+  buffActive: 0
   damage: 10
   words: []
 --- !u!212 &7916775747655281358

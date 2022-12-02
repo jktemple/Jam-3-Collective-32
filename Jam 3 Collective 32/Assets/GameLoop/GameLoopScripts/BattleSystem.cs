@@ -67,7 +67,7 @@ public class BattleSystem : MonoBehaviour
         GameObject playerGO3 = Instantiate(playerPrefab3);
         playerUnit3 = playerGO3.GetComponent<Unit>();
         GameObject bossGO = Instantiate(bossPrefab);
-        bossGO.transform.position = bossGO.transform.position + new Vector3(200,0,0);
+        bossGO.transform.position = bossGO.transform.position + new Vector3(140,-50,10);
         bossUnit = bossGO.GetComponent<Unit>();
         bossAnimator = bossGO.GetComponent<Animator>();
 
@@ -534,7 +534,7 @@ public class BattleSystem : MonoBehaviour
             trigger += "Earth";
         }
 
-        if(currentStance == 1){
+        if (currentStance == 1){
             trigger+="Offense";
         } else if(currentStance == 2){
             trigger+="Defense";

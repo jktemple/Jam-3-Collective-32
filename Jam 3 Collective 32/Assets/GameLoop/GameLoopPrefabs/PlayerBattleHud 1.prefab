@@ -109,7 +109,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0153, y: 0.0297}
+  m_AnchoredPosition: {x: 0.012, y: 0.017}
   m_SizeDelta: {x: 209.40668, y: 49.952637}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7960893662881153573
@@ -256,7 +256,7 @@ RectTransform:
   m_GameObject: {fileID: 7960893663255783437}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.002, y: 0.002, z: 0.002}
+  m_LocalScale: {x: 0.003025, y: 0.006906623, z: 0.002}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7960893663134408263}
@@ -348,7 +348,7 @@ Transform:
   m_GameObject: {fileID: 7960893663786535627}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -405, y: 198, z: 0}
-  m_LocalScale: {x: 500, y: 500, z: 500}
+  m_LocalScale: {x: 400, y: 400, z: 400}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7960893662881153572}
@@ -397,7 +397,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ec694c6072d25c54bbf599f9e38f625b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 05075f12296616745b413fdeaaa9a72c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -422,6 +422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 7960893663964045297}
   hpSlider: {fileID: 7960893664035067676}
+  unit: {fileID: 0}
 --- !u!1 &7960893663955232268
 GameObject:
   m_ObjectHideFlags: 0
