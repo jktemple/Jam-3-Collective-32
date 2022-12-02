@@ -108,13 +108,32 @@ public class BattleSystem : MonoBehaviour
         switch (state)
         {
             case BattleState.PLAYERTURN1:
-                dialogueText.text = "Choose an action 1: ";
+                if (playerUnit1.CheckDead() == true) {
+                    state = BattleState.PLAYERTURN2;
+                    PlayerTurn();
+                } else {
+                    dialogueText.text = "Select Fire Wizard's Spell: ";
+                }
                 break;
             case BattleState.PLAYERTURN2:
-                dialogueText.text = "Choose an action 2: ";
+                if (playerUnit2.CheckDead() == true) {
+                    state = BattleState.PLAYERTURN3;
+                    PlayerTurn();
+                } else
+                {
+                    dialogueText.text = "Select Water Wizard's Spell ";
+                }
                 break;
             case BattleState.PLAYERTURN3:
-                dialogueText.text = "Choose an action 3: ";
+                if (playerUnit3.CheckDead() == true)
+                {
+                    state = BattleState.RHYTHMTURN;
+                    StartCoroutine(RhythmTurn());
+                }
+                else
+                {
+                    dialogueText.text = "Select Earth Wizard's Spell: ";
+                }
                 break;
         }
     }
@@ -251,7 +270,7 @@ public class BattleSystem : MonoBehaviour
     IEnumerator RhythmTurn()
     {
         // Rhythm Stuff Goes Here
-        dialogueText.text = "Rhythm";  
+        dialogueText.text = "Casting...";  
         rhythmSystem.wordParse(wordArray);
         while (!rhythmSystem.done)
         {
@@ -299,6 +318,13 @@ public class BattleSystem : MonoBehaviour
                         dialogueText.text = "The Flame Wizard's attack was NOT VERY EFFECTIVE...";
                     }
                 }
+
+                if (playerUnit1.atkBuff == true)
+                {
+                    dmgMultipler *= 2;
+                    playerUnit1.atkBuff = false;
+                    playerUnit1.buffActive = 0;
+                }
                 break;
             // Defensive
             case 2:
@@ -310,15 +336,22 @@ public class BattleSystem : MonoBehaviour
                 dmgMultipler = 0;
                 dialogueText.text = "The Flame Wizard's casts a ATTACK BUFF!";
                 playerUnit1.atkBuff = true;
+                playerUnit1.buffActive = 1;
                 break;
             // DefBuff
             case 4:
                 dmgMultipler = 0;
                 dialogueText.text = "The Flame Wizard's casts a DEFENSE BUFF!";
                 playerUnit1.defBuff = true;
+                playerUnit1.buffActive = 1;
+                break;
+            // NULL (Dead)
+            default:
+                dmgMultipler = 0;
                 break;
         }
-        bossUnit.TakeDamage(dmgMultipler * playerUnit1.damage);
+        Debug.Log("Dmg Mult P1: " + dmgMultipler);
+        bossUnit.TakeDamage(rhythmSystem.score * dmgMultipler * playerUnit1.damage);
         isDead = bossUnit.CheckDead();
         bossHUD.SetHP(bossUnit.currentHP);
         Debug.Log("Boss: " + bossUnit.currentHP);
@@ -363,6 +396,13 @@ public class BattleSystem : MonoBehaviour
                         dialogueText.text = "The Aqua Wizard's attack was NOT VERY EFFECTIVE...";
                     }
                 }
+
+                if (playerUnit2.atkBuff == true)
+                {
+                    dmgMultipler *= 2;
+                    playerUnit1.atkBuff = false;
+                    playerUnit1.buffActive = 0;
+                }
                 break;
             // Defensive
             case 2:
@@ -374,15 +414,22 @@ public class BattleSystem : MonoBehaviour
                 dmgMultipler = 0;
                 dialogueText.text = "The Aqua Wizard's casts a ATTACK BUFF!";
                 playerUnit2.atkBuff = true;
+                playerUnit2.buffActive = 1;
                 break;
             // DefBuff
             case 4:
                 dmgMultipler = 0;
                 dialogueText.text = "The Aqua Wizard's casts a DEFENSE BUFF!";
                 playerUnit2.defBuff = true;
+                playerUnit2.buffActive = 1;
+                break;
+            // NULL (Dead)
+            default:
+                dmgMultipler = 0;
                 break;
         }
-        bossUnit.TakeDamage(dmgMultipler * playerUnit2.damage);
+        Debug.Log("Dmg Mult P2: " + dmgMultipler);
+        bossUnit.TakeDamage(rhythmSystem.score * dmgMultipler * playerUnit2.damage);
         isDead = bossUnit.CheckDead();
         bossHUD.SetHP(bossUnit.currentHP);
         Debug.Log("Boss: " + bossUnit.currentHP);
@@ -427,6 +474,13 @@ public class BattleSystem : MonoBehaviour
                         dialogueText.text = "The Earth Wizard's attack was NOT VERY EFFECTIVE...";
                     }
                 }
+
+                if (playerUnit3.atkBuff == true)
+                {
+                    dmgMultipler *= 2;
+                    playerUnit1.atkBuff = false;
+                    playerUnit1.buffActive = 0;
+                }
                 break;
             // Defensive
             case 2:
@@ -438,15 +492,22 @@ public class BattleSystem : MonoBehaviour
                 dmgMultipler = 0;
                 dialogueText.text = "The Earth Wizard's casts a ATTACK BUFF!";
                 playerUnit3.atkBuff = true;
+                playerUnit3.buffActive = 1;
                 break;
             // DefBuff
             case 4:
                 dmgMultipler = 0;
                 dialogueText.text = "The Flame Wizard's casts a DEFENSE BUFF!";
                 playerUnit3.defBuff = true;
+                playerUnit3.buffActive = 1;
+                break;
+            // NULL (Dead)
+            default:
+                dmgMultipler = 0;
                 break;
         }
-        bossUnit.TakeDamage(dmgMultipler * playerUnit3.damage);
+        Debug.Log("Dmg Mult P3: " + dmgMultipler);
+        bossUnit.TakeDamage(rhythmSystem.score * dmgMultipler * playerUnit3.damage);
         isDead = bossUnit.CheckDead();
         bossHUD.SetHP(bossUnit.currentHP);
         Debug.Log("Boss: " + bossUnit.currentHP);
@@ -465,103 +526,171 @@ public class BattleSystem : MonoBehaviour
         {
             case 1: // Offensive
                 dmgMultipler = 1;
-                if (playerUnit1.GetAttack() == 2)
-                {
-                    if (bossUnit.GetElement() == playerUnit1.GetWeakness())
+                if (playerUnit1.CheckDead() == false)
+                { 
+                    if (playerUnit1.GetAttack() == 2)
                     {
-                        dialogueText.text = "The Boss penetrates fire defense";
-                        dmgMultipler = 1;
+                        if (playerUnit1.defBuff == true)
+                        {
+                            dialogueText.text = "The Boss is unable to penetrate the buffed fire defense";
+                            dmgMultipler = 0;
+                            playerUnit1.defBuff = false;
+                            playerUnit1.buffActive = 0;
+                        }
+                        else if (bossUnit.GetElement() == playerUnit1.GetWeakness())
+                        {
+                            dialogueText.text = "The Boss penetrates fire defense";
+                            dmgMultipler = 1;
+                        } else
+                        {
+                            dialogueText.text = "The Boss attacks fire shield";
+                            dmgMultipler = (float)0.5;
+                        }
                     } else
                     {
-                        dialogueText.text = "The Boss attacks fire shield";
-                        dmgMultipler = (float) 0.5;
+                        if (bossUnit.GetElement() == playerUnit1.GetWeakness())
+                        {
+                            dialogueText.text = "The Boss critically hits the fire wizard";
+                            dmgMultipler = 2;
+                        }
+                        else
+                        {
+                            dialogueText.text = "The Boss hits the fire wizard";
+                            dmgMultipler = 1;
+                        }
                     }
-                } else
-                {
-                    if (bossUnit.GetElement() == playerUnit1.GetWeakness())
-                    {
-                        dialogueText.text = "The Boss critically hits the fire wizard";
-                        dmgMultipler = 2;
-                    }
-                    else
-                    {
-                        dialogueText.text = "The Boss hits the fire wizard";
-                        dmgMultipler = 1;
-                    }
+                    playerUnit1.TakeDamage(dmgMultipler * bossUnit.damage);
+                    yield return new WaitForSeconds(2f);
                 }
-                playerUnit1.TakeDamage(dmgMultipler * bossUnit.damage);
-                yield return new WaitForSeconds(1f);
 
                 dmgMultipler = 1;
-                if (playerUnit2.GetAttack() == 2)
+                if (playerUnit2.CheckDead() == false)
                 {
-                    if (bossUnit.GetElement() == playerUnit2.GetWeakness())
+                    if (playerUnit2.GetAttack() == 2)
                     {
-                        dialogueText.text = "The Boss penetrates water defense";
-                        dmgMultipler = 1;
+                        if (playerUnit2.defBuff == true)
+                        {
+                            dialogueText.text = "The Boss is unable to penetrate the buffed water defense";
+                            dmgMultipler = 0;
+                            playerUnit2.defBuff = false;
+                            playerUnit2.buffActive = 0;
+                        }
+                        else if (bossUnit.GetElement() == playerUnit2.GetWeakness())
+                        {
+                            dialogueText.text = "The Boss penetrates water defense";
+                            dmgMultipler = 1;
+                        }
+                        else
+                        {
+                            dialogueText.text = "The Boss attacks water shield";
+                            dmgMultipler = (float)0.5;
+                        }
                     }
                     else
                     {
-                        dialogueText.text = "The Boss attacks water shield";
-                        dmgMultipler = (float) 0.5;
+                        if (bossUnit.GetElement() == playerUnit2.GetWeakness())
+                        {
+                            dialogueText.text = "The Boss critically hits the water wizard";
+                            dmgMultipler = 2;
+                        }
+                        else
+                        {
+                            dialogueText.text = "The Boss hits the water wizard";
+                            dmgMultipler = 1;
+                        }
                     }
+                    playerUnit2.TakeDamage(dmgMultipler * bossUnit.damage);
+                    yield return new WaitForSeconds(2f);
                 }
-                else
-                {
-                    if (bossUnit.GetElement() == playerUnit2.GetWeakness())
-                    {
-                        dialogueText.text = "The Boss critically hits the water wizard";
-                        dmgMultipler = 2;
-                    }
-                    else
-                    {
-                        dialogueText.text = "The Boss hits the water wizard";
-                        dmgMultipler = 1;
-                    }
-                }
-                playerUnit2.TakeDamage(dmgMultipler * bossUnit.damage);
-                yield return new WaitForSeconds(1f);
 
                 dmgMultipler = 1;
-                if (playerUnit3.GetAttack() == 2)
+                if (playerUnit3.CheckDead() == false)
                 {
-                    if (bossUnit.GetElement() == playerUnit3.GetWeakness())
+                    if (playerUnit3.GetAttack() == 2)
                     {
-                        dialogueText.text = "The Boss penetrates earth defense";
-                        dmgMultipler = 1;
+                        if (playerUnit1.defBuff == true)
+                        {
+                            dialogueText.text = "The Boss is unable to penetrate the buffed earth defense";
+                            dmgMultipler = 0;
+                            playerUnit1.defBuff = false;
+                            playerUnit1.buffActive = 0;
+                        }
+                        else if (bossUnit.GetElement() == playerUnit3.GetWeakness())
+                        {
+                            dialogueText.text = "The Boss penetrates earth defense";
+                            dmgMultipler = 1;
+                        }
+                        else
+                        {
+                            dialogueText.text = "The Boss attacks earth shield";
+                            dmgMultipler = (float)0.5;
+                        }
                     }
                     else
                     {
-                        dialogueText.text = "The Boss attacks earth shield";
-                        dmgMultipler = (float) 0.5;
+                        if (bossUnit.GetElement() == playerUnit3.GetWeakness())
+                        {
+                            dialogueText.text = "The Boss critically hits the earth wizard";
+                            dmgMultipler = 2;
+                        }
+                        else
+                        {
+                            dialogueText.text = "The Boss hits the earth wizard";
+                            dmgMultipler = 1;
+                        }
                     }
+                    playerUnit3.TakeDamage(dmgMultipler * bossUnit.damage);
+                    yield return new WaitForSeconds(2f);
                 }
-                else
-                {
-                    if (bossUnit.GetElement() == playerUnit3.GetWeakness())
-                    {
-                        dialogueText.text = "The Boss critically hits the earth wizard";
-                        dmgMultipler = 2;
-                    }
-                    else
-                    {
-                        dialogueText.text = "The Boss hits the earth wizard";
-                        dmgMultipler = 1;
-                    }
-                }
-                playerUnit3.TakeDamage(dmgMultipler * bossUnit.damage);
-                yield return new WaitForSeconds(1f);
-
                 break;
             default: // Neutral and Defensive
+
                 int target = Random.Range(1, 4);
+                bool validTarget = true;
+                switch (target)
+                {
+                    case 1:
+                        if (playerUnit1.CheckDead() == true) { validTarget = false; }
+                        break;
+                    case 2:
+                        if (playerUnit2.CheckDead() == true) { validTarget = false; }
+                        break;
+                    case 3:
+                        if (playerUnit3.CheckDead() == true) { validTarget = false; }
+                        break;
+                }
+                while (validTarget == false)
+                {
+                    target = Random.Range(1, 4);
+                    validTarget = true;
+                    switch (target)
+                    {
+                        case 1:
+                            if (playerUnit1.CheckDead() == true) { validTarget = false; }
+                            break;
+                        case 2:
+                            if (playerUnit2.CheckDead() == true) { validTarget = false; }
+                            break;
+                        case 3:
+                            if (playerUnit3.CheckDead() == true) { validTarget = false; }
+                            break;
+                    }
+                }
+
                 dmgMultipler = 1;
                 switch (target)
                 {
                     case 1:
                         if (playerUnit1.GetAttack() == 2)
                         {
-                            if (bossUnit.GetElement() == playerUnit1.GetWeakness())
+                            if (playerUnit1.defBuff == true)
+                            {
+                                dialogueText.text = "The Boss is unable to penetrate the buffed fire defense";
+                                dmgMultipler = 0;
+                                playerUnit1.defBuff = false;
+                                playerUnit1.buffActive = 0;
+                            }
+                            else if (bossUnit.GetElement() == playerUnit1.GetWeakness())
                             {
                                 dialogueText.text = "The Boss penetrates fire defense";
                                 dmgMultipler = 1;
@@ -586,12 +715,19 @@ public class BattleSystem : MonoBehaviour
                             }
                         }
                         playerUnit1.TakeDamage(dmgMultipler * bossUnit.damage);
-                        yield return new WaitForSeconds(1f);
+                        yield return new WaitForSeconds(2f);
                         break;
                     case 2:
                         if (playerUnit2.GetAttack() == 2)
                         {
-                            if (bossUnit.GetElement() == playerUnit2.GetWeakness())
+                            if (playerUnit2.defBuff == true)
+                            {
+                                dialogueText.text = "The Boss is unable to penetrate the buffed water defense";
+                                dmgMultipler = 0;
+                                playerUnit2.defBuff = false;
+                                playerUnit2.buffActive = 0;
+                            }
+                            else if (bossUnit.GetElement() == playerUnit2.GetWeakness())
                             {
                                 dialogueText.text = "The Boss penetrates water defense";
                                 dmgMultipler = 1;
@@ -616,12 +752,19 @@ public class BattleSystem : MonoBehaviour
                             }
                         }
                         playerUnit2.TakeDamage(dmgMultipler * bossUnit.damage);
-                        yield return new WaitForSeconds(1f);
+                        yield return new WaitForSeconds(2f);
                         break;
                     case 3:
                         if (playerUnit3.GetAttack() == 2)
                         {
-                            if (bossUnit.GetElement() == playerUnit3.GetWeakness())
+                            if (playerUnit3.defBuff == true)
+                            {
+                                dialogueText.text = "The Boss is unable to penetrate the buffed fire defense";
+                                dmgMultipler = 0;
+                                playerUnit3.defBuff = false;
+                                playerUnit3.buffActive = 0;
+                            }
+                            else if (bossUnit.GetElement() == playerUnit3.GetWeakness())
                             {
                                 dialogueText.text = "The Boss penetrates earth defense";
                                 dmgMultipler = 1;
@@ -646,7 +789,7 @@ public class BattleSystem : MonoBehaviour
                             }
                         }
                         playerUnit3.TakeDamage(dmgMultipler * bossUnit.damage);
-                        yield return new WaitForSeconds(1f);
+                        yield return new WaitForSeconds(2f);
                         break;
                 }
                 break;

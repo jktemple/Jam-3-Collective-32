@@ -20,7 +20,7 @@ public class Unit : MonoBehaviour
     public Attack attack;       // Unit Attack
     public bool atkBuff = false;    // Will Next Turn Be Attack Buffed
     public bool defBuff = false;    // Will Next Turn Be Defense Buffed
-
+    public int buffActive = 0;      // Counter for Tracking if a Buff is Active
 
     public int damage;      // Unit Attack Power
 
@@ -35,6 +35,14 @@ public class Unit : MonoBehaviour
     public void WizardReset()
     {
         attack = Attack.NULL;
+        if (buffActive != 0)
+        {
+            buffActive--;
+        } else if (buffActive == 0)
+        {
+            atkBuff = false;
+            defBuff = false;
+        }
     }
 
     // Stance Setter
