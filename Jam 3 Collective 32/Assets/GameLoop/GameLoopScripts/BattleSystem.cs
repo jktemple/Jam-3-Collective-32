@@ -10,11 +10,15 @@ public enum AttackType { OFFENSIVE, DEFENSIVE, BUFF }
 
 public class BattleSystem : MonoBehaviour
 {
+    //Animators
+    Animator bossAnimator;
+    
     // Prefab Declaration
     public GameObject playerPrefab1;
     public GameObject playerPrefab2;
     public GameObject playerPrefab3;
     public GameObject bossPrefab;
+
 
     // Unit Declaration 
     Unit playerUnit1;
@@ -54,6 +58,7 @@ public class BattleSystem : MonoBehaviour
         playerUnit3 = playerGO3.GetComponent<Unit>();
         GameObject bossGO = Instantiate(bossPrefab);
         bossUnit = bossGO.GetComponent<Unit>();
+        bossAnimator = bossGO.GetComponent<Animator>();
 
         // Sets initial dialogue text
         dialogueText.text = "A " + bossUnit.unitName + " approaches...";
@@ -285,6 +290,14 @@ public class BattleSystem : MonoBehaviour
 
         int element_rnd = Random.Range(0, 3);
         bossUnit.ChangeElement(element_rnd);
+        if(bossUnit.element == Element.FIRE){
+            bossAnimator.SetTrigger("BossToFire");
+        } else if(bossUnit.element == Element.WATER){
+            bossAnimator.SetTrigger("BossToWater");
+        } else {
+            bossAnimator.SetTrigger("BossToEarth");
+        }
+
 
         state = BattleState.PLAYERTURN1;
         PlayerTurn();
