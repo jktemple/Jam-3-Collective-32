@@ -42,11 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-<<<<<<< HEAD
-  spriteMode: 1
-=======
   spriteMode: 2
->>>>>>> d08beba37ea020fd6a528542479907b4ca0a6fac
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -55,7 +51,7 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 1
+  alphaIsTransparency: 0
   spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
@@ -107,9 +103,6 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-<<<<<<< HEAD
-    sprites: []
-=======
     sprites:
     - serializedVersion: 2
       name: O_Hero_Idle_Water-Sheet_0
@@ -126,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7617cf7e830d8d646b02a6e397763a73
-      internalID: 1895668900
+      spriteID: 3259d7788583fef49bfc9d81fff82116
+      internalID: -21066659
       vertices: []
       indices: 
       edges: []
@@ -147,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59565d16054701d458e2e867489b52a5
-      internalID: -183481300
+      spriteID: eaacada37628da2409109582aba11a9d
+      internalID: -689030349
       vertices: []
       indices: 
       edges: []
@@ -168,8 +161,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 186d92cac58dc6b42a4e987359f2ff2c
-      internalID: -2100096218
+      spriteID: 021a9d8b5b1b80844bab223bca520d2d
+      internalID: -1380287539
       vertices: []
       indices: 
       edges: []
@@ -189,8 +182,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f74513b0bd5074a4a908db95c16aabff
-      internalID: -1158956170
+      spriteID: 416faf501973f7744bcdd7f7127a87d9
+      internalID: -1822591040
       vertices: []
       indices: 
       edges: []
@@ -210,8 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 43405ab8fa4c86048b124d8aa2396351
-      internalID: 1456363745
+      spriteID: 8b6bbbc4b78b3ee4cab58a7a7318f9e2
+      internalID: 1878465368
       vertices: []
       indices: 
       edges: []
@@ -231,8 +224,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db01a49db643ba945a536eb6a1da906a
-      internalID: -1262061255
+      spriteID: 47509f614a11ca6478d3f8ff46f20a10
+      internalID: -1357203713
       vertices: []
       indices: 
       edges: []
@@ -252,8 +245,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c57dc0050614c043831f4c87e1ddbce
-      internalID: -512616195
+      spriteID: 781cffe4897676845a03d28526335b6a
+      internalID: -1162673992
       vertices: []
       indices: 
       edges: []
@@ -273,8 +266,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1f080141dffd7143b84fb96c963656f
-      internalID: -111129251
+      spriteID: e55ae3c5d06bffb40b844232f345e5f5
+      internalID: -262756660
       vertices: []
       indices: 
       edges: []
@@ -294,8 +287,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ab5ead20d77e544eb6df0280e7367c7
-      internalID: -2050867885
+      spriteID: f3b62e6508fadb342841e89f7741a6f7
+      internalID: -299576986
       vertices: []
       indices: 
       edges: []
@@ -315,8 +308,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f98e49ea10d0ef49a73b9b53a3deac7
-      internalID: 2103666476
+      spriteID: 9917da57f82483246a0cd5f1fc16501f
+      internalID: -1871360165
       vertices: []
       indices: 
       edges: []
@@ -336,8 +329,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 178d87da585a8064e948214a2ad3fb37
-      internalID: -17238100
+      spriteID: 5cee7cca296c28d438e54577f7f378c5
+      internalID: -737189605
       vertices: []
       indices: 
       edges: []
@@ -357,8 +350,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61e96b28f0bf09043ad7227afc97cb12
-      internalID: -851592151
+      spriteID: 0f3fca4dd61c7b9468b88cffa73cd2d7
+      internalID: -235196855
       vertices: []
       indices: 
       edges: []
@@ -378,8 +371,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b091a99fb42887b41a972b7121e97528
-      internalID: -1737650109
+      spriteID: bbbab5c6c6d522746968f360d6e31dc7
+      internalID: 174368256
       vertices: []
       indices: 
       edges: []
@@ -399,8 +392,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9bfc15a1940c02b47918aff9a48231a9
-      internalID: -1077253915
+      spriteID: 0dcfa92861490d54381d27c064a0bcd8
+      internalID: -1860293329
       vertices: []
       indices: 
       edges: []
@@ -420,8 +413,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd0d4842d5923604e978b6d7ad27ba7a
-      internalID: 1141007448
+      spriteID: 6312eef3043a33349a12a68d2133d8af
+      internalID: -594541423
       vertices: []
       indices: 
       edges: []
@@ -441,8 +434,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d969202d8c1f8f148a89a02c80f46975
-      internalID: 1836966745
+      spriteID: 6f1827cf0619dc745bb1bdcead084023
+      internalID: 1473637837
       vertices: []
       indices: 
       edges: []
@@ -462,8 +455,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 465068ad2401bbc4d965ad4d87d53c49
-      internalID: 2062820383
+      spriteID: f7b6dcc673cbd8c43b0571ca6573f150
+      internalID: 126426957
       vertices: []
       indices: 
       edges: []
@@ -483,8 +476,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f9a810811c99f9841ac4061333802893
-      internalID: -577699908
+      spriteID: 3bc489a7a903c2c4fa3d549b756a4cbc
+      internalID: -405766247
       vertices: []
       indices: 
       edges: []
@@ -504,8 +497,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a27f888bc14946449998417a3a0a2e41
-      internalID: 1432216976
+      spriteID: c80303ab6fb75674c9a8fb57f1179185
+      internalID: -446015367
       vertices: []
       indices: 
       edges: []
@@ -525,8 +518,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ad5e366bb698314e8cdad4c987523ee
-      internalID: 1812838655
+      spriteID: 849dfe8afc904444fab369a247d26dc1
+      internalID: 2021239664
       vertices: []
       indices: 
       edges: []
@@ -546,8 +539,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec50be89911fa934896dade867e2ff90
-      internalID: -810255735
+      spriteID: 10fff53af6fe3ad408d890db7e190584
+      internalID: 803365461
       vertices: []
       indices: 
       edges: []
@@ -567,50 +560,45 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf05f9a957bcbc241bf6c75caf394fad
-      internalID: -1090253139
+      spriteID: 01937786191bdd74fa1addeaf0f681b7
+      internalID: -1445827595
       vertices: []
       indices: 
       edges: []
       weights: []
->>>>>>> d08beba37ea020fd6a528542479907b4ca0a6fac
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 18621cf58be4f4841adb65864cbaa871
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-<<<<<<< HEAD
-    nameFileIdTable: {}
-=======
     nameFileIdTable:
-      O_Hero_Idle_Water-Sheet_20: -810255735
-      O_Hero_Idle_Water-Sheet_3: -1158956170
-      O_Hero_Idle_Water-Sheet_7: -111129251
-      O_Hero_Idle_Water-Sheet_4: 1456363745
-      O_Hero_Idle_Water-Sheet_2: -2100096218
-      O_Hero_Idle_Water-Sheet_5: -1262061255
-      O_Hero_Idle_Water-Sheet_10: -17238100
-      O_Hero_Idle_Water-Sheet_8: -2050867885
-      O_Hero_Idle_Water-Sheet_1: -183481300
-      O_Hero_Idle_Water-Sheet_13: -1077253915
-      O_Hero_Idle_Water-Sheet_17: -577699908
-      O_Hero_Idle_Water-Sheet_21: -1090253139
-      O_Hero_Idle_Water-Sheet_14: 1141007448
-      O_Hero_Idle_Water-Sheet_0: 1895668900
-      O_Hero_Idle_Water-Sheet_9: 2103666476
-      O_Hero_Idle_Water-Sheet_6: -512616195
-      O_Hero_Idle_Water-Sheet_16: 2062820383
-      O_Hero_Idle_Water-Sheet_15: 1836966745
-      O_Hero_Idle_Water-Sheet_18: 1432216976
-      O_Hero_Idle_Water-Sheet_11: -851592151
-      O_Hero_Idle_Water-Sheet_12: -1737650109
-      O_Hero_Idle_Water-Sheet_19: 1812838655
->>>>>>> d08beba37ea020fd6a528542479907b4ca0a6fac
+      O_Hero_Idle_Water-Sheet_20: 803365461
+      O_Hero_Idle_Water-Sheet_3: -1822591040
+      O_Hero_Idle_Water-Sheet_7: -262756660
+      O_Hero_Idle_Water-Sheet_4: 1878465368
+      O_Hero_Idle_Water-Sheet_2: -1380287539
+      O_Hero_Idle_Water-Sheet_5: -1357203713
+      O_Hero_Idle_Water-Sheet_10: -737189605
+      O_Hero_Idle_Water-Sheet_8: -299576986
+      O_Hero_Idle_Water-Sheet_1: -689030349
+      O_Hero_Idle_Water-Sheet_13: -1860293329
+      O_Hero_Idle_Water-Sheet_17: -405766247
+      O_Hero_Idle_Water-Sheet_21: -1445827595
+      O_Hero_Idle_Water-Sheet_14: -594541423
+      O_Hero_Idle_Water-Sheet_0: -21066659
+      O_Hero_Idle_Water-Sheet_9: -1871360165
+      O_Hero_Idle_Water-Sheet_6: -1162673992
+      O_Hero_Idle_Water-Sheet_16: 126426957
+      O_Hero_Idle_Water-Sheet_15: 1473637837
+      O_Hero_Idle_Water-Sheet_18: -446015367
+      O_Hero_Idle_Water-Sheet_11: -235196855
+      O_Hero_Idle_Water-Sheet_12: 174368256
+      O_Hero_Idle_Water-Sheet_19: 2021239664
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

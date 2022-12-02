@@ -12,6 +12,15 @@ EditorBuildSettings:
     path: Assets/Scenes/RythemScene.unity
     guid: 4ffbfd40ec5e13746a74900692cdc052
   - enabled: 1
+    path: Assets/Scenes/MenuScene.unity
+    guid: 5aef28525f41df3478a6547a2da6b20b
+  - enabled: 1
+    path: Assets/GameLoop/GameLoopScenes/GameLoop.unity
+    guid: e06bace622f8475458fb5c33067a9e3c
+  - enabled: 1
     path: Assets/Scenes/VictoryScene.unity
     guid: e69f84a5f7911f142b0ba61e20708a8c
+  - enabled: 1
+    path: Assets/Scenes/DefeatScene.unity
+    guid: d48f46936d75b754eb53484d16755759
   m_configObjects: {}

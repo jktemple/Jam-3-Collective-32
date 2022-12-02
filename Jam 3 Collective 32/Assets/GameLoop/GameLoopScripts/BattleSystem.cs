@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 // Game State Enum
 public enum BattleState { START, PLAYERTURN1, PLAYERTURN2, PLAYERTURN3, RHYTHMTURN ,PLAYERATTACK, ENEMYTURN, WON, LOST}
@@ -521,6 +522,27 @@ public class BattleSystem : MonoBehaviour
     // EnemyTurn - The Enemy's Actions Execute
     IEnumerator EnemyTurn()
     {
+        
+        int currentStance = bossUnit.GetStance();
+        int currentElement = bossUnit.GetElement();
+        string trigger = "BossTo"; 
+        if(currentElement == 0){
+            trigger += "Fire";
+        } else if(currentElement == 1){
+            trigger += "Water";
+        } else {
+            trigger += "Earth";
+        }
+
+        if(currentStance == 1){
+            trigger+="Offense";
+        } else if(currentStance == 2){
+            trigger+="Defense";
+        }
+        Debug.Log("trigger = " + trigger);
+        bossAnimator.SetTrigger(trigger);
+        
+
         float dmgMultipler = 1;
         switch (bossUnit.GetStance())
         {
@@ -811,13 +833,7 @@ public class BattleSystem : MonoBehaviour
         int element_rnd = Random.Range(0, 3);
         bossUnit.ChangeElement(element_rnd);
         
-        if(bossUnit.element == Element.FIRE){
-            bossAnimator.SetTrigger("BossToFire");
-        } else if(bossUnit.element == Element.WATER){
-            bossAnimator.SetTrigger("BossToWater");
-        } else {
-            bossAnimator.SetTrigger("BossToEarth");
-        }
+        
 
         ResetRound();
         state = BattleState.PLAYERTURN1;
@@ -850,9 +866,11 @@ public class BattleSystem : MonoBehaviour
     {
         if(state == BattleState.WON)
         {
+            SceneManager.LoadScene("VictoryScene");
             dialogueText.text = "You win!";
         } else if (state == BattleState.LOST)
         {
+            SceneManager.LoadScene("DefeatScene");
             dialogueText.text = "You lose!";
         }
     }
