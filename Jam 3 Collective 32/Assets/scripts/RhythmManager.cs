@@ -62,6 +62,7 @@ public class RhythmManager : MonoBehaviour
     {
         //find the width of the viewport in world units
         worldXwidth = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0)).x - Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x;
+        Debug.Log(worldXwidth);
 
         //load words (yey data entry)
         loadWord(NEKKINULL,  "wordSounds/nekki",      0.16f, 0.34f);
@@ -205,6 +206,7 @@ public class RhythmManager : MonoBehaviour
             totalTime += Time;
         }
         stepDist = worldXwidth * 0.8f / totalTime; //distance to be traveled per second
+        Debug.Log(stepDist);
         float acumulatedTime = 0;
         foreach (float Time in times)
         {
