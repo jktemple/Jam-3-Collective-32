@@ -323,7 +323,7 @@ public class BattleSystem : MonoBehaviour
         bossHUD.SetHP(bossUnit.currentHP);
         Debug.Log("Boss: " + bossUnit.currentHP);
         CheckDead(isDead);
-
+        playerPrefab1.GetComponent<Animator>().SetTrigger("Attack");
         yield return new WaitForSeconds(2f);
 
         // Player 2 Attacks
@@ -387,7 +387,7 @@ public class BattleSystem : MonoBehaviour
         bossHUD.SetHP(bossUnit.currentHP);
         Debug.Log("Boss: " + bossUnit.currentHP);
         CheckDead(isDead);
-
+        playerPrefab2.GetComponent<Animator>().SetTrigger("Attack");
         yield return new WaitForSeconds(2f);
 
         // Player 3 Attacks
@@ -451,7 +451,7 @@ public class BattleSystem : MonoBehaviour
         bossHUD.SetHP(bossUnit.currentHP);
         Debug.Log("Boss: " + bossUnit.currentHP);
         CheckDead(isDead);
-
+        playerPrefab3.GetComponent<Animator>().SetTrigger("Attack");
         yield return new WaitForSeconds(2f);
 
         StartCoroutine(EnemyTurn());
