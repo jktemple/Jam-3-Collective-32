@@ -61,6 +61,7 @@ public class BattleSystem : MonoBehaviour
         GameObject playerGO3 = Instantiate(playerPrefab3);
         playerUnit3 = playerGO3.GetComponent<Unit>();
         GameObject bossGO = Instantiate(bossPrefab);
+        bossGO.transform.position = bossGO.transform.position + new Vector3(200,0,0);
         bossUnit = bossGO.GetComponent<Unit>();
         bossAnimator = bossGO.GetComponent<Animator>();
 
