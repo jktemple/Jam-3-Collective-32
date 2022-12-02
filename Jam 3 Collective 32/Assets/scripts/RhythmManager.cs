@@ -3,6 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+//TO use:
+//call "wordParse(input)" where input is an array of ints as follows:
+//0 - nekki;
+//1 - feldr;
+//2 - vatn;
+//3 - jord;
+//4 - ordomr;
+//5 - vardVeita;
+//6 - sarLiga;
+//7 - skjalBor;
+
+
+
 public class RhythmManager : MonoBehaviour
 {
     //prefabs to instantiate
@@ -48,7 +61,7 @@ public class RhythmManager : MonoBehaviour
         //find the width of the viewport in world units
         worldXwidth = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0)).x - Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x;
 
-        //load words
+        //load words (yeah data entry)
         wordlist[0].sound = Resources.Load<AudioClip>("wordSounds/nekki");
         wordlist[0].timeBefore = 0.16f;
         wordlist[0].timeAfter = 0.5f - wordlist[0].timeBefore;
@@ -154,6 +167,10 @@ public class RhythmManager : MonoBehaviour
             Destroy(targets[0]);
             targets.RemoveAt(0);
             dists.RemoveAt(0);
+        }
+        while(wordRef.Count > 0)
+        {
+            wordRef.Dequeue();
         }
 
         done = true;
