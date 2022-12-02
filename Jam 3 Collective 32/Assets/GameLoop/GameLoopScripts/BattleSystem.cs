@@ -71,19 +71,24 @@ public class BattleSystem : MonoBehaviour
         bossUnit = bossGO.GetComponent<Unit>();
         bossAnimator = bossGO.GetComponent<Animator>();
 
-        // Set Boss Animation
-        if (bossUnit.element == Element.FIRE)
-        {
-            bossAnimator.SetTrigger("BossToFire");
+        int currentStance = bossUnit.GetStance();
+        int currentElement = bossUnit.GetElement();
+        string trigger = "BossTo"; 
+        if(currentElement == 0){
+            trigger += "Fire";
+        } else if(currentElement == 1){
+            trigger += "Water";
+        } else {
+            trigger += "Earth";
         }
-        else if (bossUnit.element == Element.WATER)
-        {
-            bossAnimator.SetTrigger("BossToWater");
+
+        if(currentStance == 1){
+            trigger+="Offense";
+        } else if(currentStance == 2){
+            trigger+="Defense";
         }
-        else
-        {
-            bossAnimator.SetTrigger("BossToEarth");
-        }
+        Debug.Log("trigger = " + trigger);
+        bossAnimator.SetTrigger(trigger);
 
         // Sets initial dialogue text
         dialogueText.text = "A " + bossUnit.unitName + " approaches...";
@@ -523,24 +528,7 @@ public class BattleSystem : MonoBehaviour
     IEnumerator EnemyTurn()
     {
         
-        int currentStance = bossUnit.GetStance();
-        int currentElement = bossUnit.GetElement();
-        string trigger = "BossTo"; 
-        if(currentElement == 0){
-            trigger += "Fire";
-        } else if(currentElement == 1){
-            trigger += "Water";
-        } else {
-            trigger += "Earth";
-        }
-
-        if (currentStance == 1){
-            trigger+="Offense";
-        } else if(currentStance == 2){
-            trigger+="Defense";
-        }
-        Debug.Log("trigger = " + trigger);
-        bossAnimator.SetTrigger(trigger);
+        
         
 
         float dmgMultipler = 1;
@@ -833,7 +821,24 @@ public class BattleSystem : MonoBehaviour
         int element_rnd = Random.Range(0, 3);
         bossUnit.ChangeElement(element_rnd);
         
-        
+        int currentStance = bossUnit.GetStance();
+        int currentElement = bossUnit.GetElement();
+        string trigger = "BossTo"; 
+        if(currentElement == 0){
+            trigger += "Fire";
+        } else if(currentElement == 1){
+            trigger += "Water";
+        } else {
+            trigger += "Earth";
+        }
+
+        if(currentStance == 1){
+            trigger+="Offense";
+        } else if(currentStance == 2){
+            trigger+="Defense";
+        }
+        Debug.Log("trigger = " + trigger);
+        bossAnimator.SetTrigger(trigger);
 
         ResetRound();
         state = BattleState.PLAYERTURN1;

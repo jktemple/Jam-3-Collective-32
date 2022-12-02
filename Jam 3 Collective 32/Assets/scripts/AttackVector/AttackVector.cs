@@ -47,6 +47,9 @@ public class AttackVector : MonoBehaviour
             this.transform.position = new Vector3(x, y, startPos.z);
             yield return null;
         }
+        Destroy(particle);
+        Destroy(this);
+        
     }
 
     //create a trigger idk
@@ -56,16 +59,22 @@ public class AttackVector : MonoBehaviour
         startPos = this.transform.position;
         endPos = target.GetComponent<Transform>().position;
 
-        targetDir = Mathf.Atan2(endPos.y - startPos.y, endPos.x - startPos.x) * Mathf.Rad2Deg;
+        targetDir = (Mathf.Atan2(endPos.y - startPos.y, endPos.x - startPos.x) * Mathf.Rad2Deg) ;
 
-        particle = Instantiate(particleFab, startPos, Quaternion.Euler(0, 0, targetDir));
+
+
+        particle = Instantiate(particleFab, startPos, Quaternion.identity); 
+
+        //this.transform.rotation = Quaternion.Inverse(Quaternion.Euler(0, 0, targetDir));
+        transform.rotation = Quaternion.Euler(0, 0, targetDir);
+        
+
+
         //particle.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
 
         StartCoroutine(Attack());
     }
 
-
- 
 
     // Update is called once per frame
     void Update()
