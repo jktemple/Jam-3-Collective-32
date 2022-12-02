@@ -17,13 +17,14 @@ public class BattleSystem : MonoBehaviour
     Animator bossAnimator;
 
     //lights
+    /*
     public GameObject Aura;
     public Color FireColor;
     public Color WaterColor;
     public Color EarthColor;
 
     private Color currentColor; 
-
+    */
 
 
     // Prefab Declaration
@@ -60,7 +61,7 @@ public class BattleSystem : MonoBehaviour
     public BattleHUD playerHUD3;
     public BattleHUD bossHUD;
 
-    // Game State Declaration
+    // Game State Declaration 
     public BattleState state;
 
     // Array for Rhythm minigame decloration
@@ -79,7 +80,7 @@ public class BattleSystem : MonoBehaviour
         // BattleState = START
         state = BattleState.START;
         StartCoroutine(SetupBattle());
-        currentColor = Aura.GetComponent<Light2D>().color;
+        //currentColor = Aura.GetComponent<Light2D>().color;
     }
 
 
@@ -92,7 +93,7 @@ public class BattleSystem : MonoBehaviour
         value -= 2;
         return -end * 0.5f * (value * value * value * value - 2) + start;
     }
-
+    /*
     IEnumerator ChangeColor(Color oldcolor, Color newcolor, GameObject light, float duration){
         float time = 0.0f;
 
@@ -113,35 +114,37 @@ public class BattleSystem : MonoBehaviour
         }
         currentColor = light.GetComponent<Light2D>().color;
     }
+    */
 
     // SetupBattle - Initializes Necessary Entities
     IEnumerator SetupBattle()
     {
         // Initializes Units using the corresponding prefab
-        GameObject playerGO1 = Instantiate(playerPrefab1);
+        GameObject playerGO1 = playerPrefab1;
         playerUnit1 = playerGO1.GetComponent<Unit>();
-        GameObject playerGO2 = Instantiate(playerPrefab2);
+        GameObject playerGO2 = playerPrefab2;
         playerUnit2 = playerGO2.GetComponent<Unit>();
-        GameObject playerGO3 = Instantiate(playerPrefab3);
+        GameObject playerGO3 = playerPrefab3;
         playerUnit3 = playerGO3.GetComponent<Unit>();
-        GameObject bossGO = Instantiate(bossPrefab);
+        GameObject bossGO = bossPrefab;
         bossGO.transform.position = bossGO.transform.position + new Vector3(3.137f, 0.746f, 0);
         bossUnit = bossGO.GetComponent<Unit>();
         bossAnimator = bossGO.GetComponent<Animator>();
+        bossTarg = bossGO;
 
         int currentStance = bossUnit.GetStance();
         int currentElement = bossUnit.GetElement();
         string trigger = "BossTo"; 
         if(currentElement == 0){
             print("color change to red!");
-            StartCoroutine(ChangeColor(currentColor, FireColor, Aura, 2f));
+            //StartCoroutine(ChangeColor(currentColor, FireColor, Aura, 2f));
             trigger += "Fire";
         } else if(currentElement == 1){
             trigger += "Water";
-            StartCoroutine(ChangeColor(currentColor, WaterColor, Aura, 2f));
+            //StartCoroutine(ChangeColor(currentColor, WaterColor, Aura, 2f));
         } else {
             trigger += "Earth";
-            StartCoroutine(ChangeColor(currentColor, EarthColor, Aura, 2f));
+            //StartCoroutine(ChangeColor(currentColor, EarthColor, Aura, 2f));
         }
         
         if(currentStance == 1){
@@ -931,14 +934,14 @@ public class BattleSystem : MonoBehaviour
         string trigger = "BossTo"; 
         if(currentElement == 0){
             print("color change to red!");
-            StartCoroutine(ChangeColor(currentColor, FireColor, Aura, 2f));
+            //StartCoroutine(ChangeColor(currentColor, FireColor, Aura, 2f));
             trigger += "Fire";
         } else if(currentElement == 1){
             trigger += "Water";
-            StartCoroutine(ChangeColor(currentColor, WaterColor, Aura, 2f));
+            //StartCoroutine(ChangeColor(currentColor, WaterColor, Aura, 2f));
         } else {
             trigger += "Earth";
-            StartCoroutine(ChangeColor(currentColor, EarthColor, Aura, 2f));
+            //StartCoroutine(ChangeColor(currentColor, EarthColor, Aura, 2f));
         }
 
         if(currentStance == 1){
