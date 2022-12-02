@@ -21,7 +21,7 @@ public class BattleHUD : MonoBehaviour
 
     // Function: SetHP
     // Description: Initializes HP Slider with HP value
-    public void SetHP(int hp)
+    public void SetHP(float hp)
     {
         hpSlider.value = hp;
     }
