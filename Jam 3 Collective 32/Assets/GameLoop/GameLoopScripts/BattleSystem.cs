@@ -40,7 +40,12 @@ public class BattleSystem : MonoBehaviour
     public BattleState state;
 
     // Array for Rhythm minigame decloration
-    int[] wordArray = {1,0,2,0,3,0};
+    int[] wordArray = { RhythmManager.FELDRFIRE,
+                        RhythmManager.NEKKINULL,
+                        RhythmManager.VATNWATER,
+                        RhythmManager.NEKKINULL,
+                        RhythmManager.JORDEARTH,
+                        RhythmManager.NEKKINULL};
 
     // Game Start - Starts Game
     void Start()
@@ -124,19 +129,19 @@ public class BattleSystem : MonoBehaviour
         else if (state == BattleState.PLAYERTURN1)
         {
             playerUnit1.ChangeAttack(1);
-            wordArray[1] = 4;
+            wordArray[1] = RhythmManager.ORDOMROFF;
             Debug.Log("Player1: Offensive");
         }
         else if (state == BattleState.PLAYERTURN2)
         {
             playerUnit2.ChangeAttack(1);
-            wordArray[3] = 4;
+            wordArray[3] = RhythmManager.ORDOMROFF;
             Debug.Log("Player2: Offensive");
         }
         else if (state == BattleState.PLAYERTURN3)
         {
             playerUnit3.ChangeAttack(1);
-            wordArray[5] = 4;
+            wordArray[5] = RhythmManager.ORDOMROFF;
             Debug.Log("Player3: Offensive");
         }
     }
@@ -151,19 +156,19 @@ public class BattleSystem : MonoBehaviour
         else if (state == BattleState.PLAYERTURN1)
         {
             playerUnit1.ChangeAttack(2);
-            wordArray[1] = 5;
+            wordArray[1] = RhythmManager.VARDDEF;
             Debug.Log("Player1: Defensive");
         }
         else if (state == BattleState.PLAYERTURN2)
         {
             playerUnit2.ChangeAttack(2);
-            wordArray[3] = 5;
+            wordArray[3] = RhythmManager.VARDDEF;
             Debug.Log("Player2: Defensive");
         }
         else if (state == BattleState.PLAYERTURN3)
         {
             playerUnit3.ChangeAttack(2);
-            wordArray[5] = 5;
+            wordArray[5] = RhythmManager.VARDDEF;
             Debug.Log("Player3: Defensive");
         }
     }
@@ -178,19 +183,19 @@ public class BattleSystem : MonoBehaviour
         else if (state == BattleState.PLAYERTURN1)
         {
             playerUnit1.ChangeAttack(3);
-            wordArray[1] = 6;
+            wordArray[1] = RhythmManager.SARABUFF;
             Debug.Log("Player1: AtkBuff");
         }
         else if (state == BattleState.PLAYERTURN2)
         {
             playerUnit2.ChangeAttack(3);
-            wordArray[3] = 6;
+            wordArray[3] = RhythmManager.SARABUFF;
             Debug.Log("Player2: AtkBuff");
         }
         else if (state == BattleState.PLAYERTURN3)
         {
             playerUnit3.ChangeAttack(3);
-            wordArray[5] = 6;
+            wordArray[5] = RhythmManager.SARABUFF;
             Debug.Log("Player3: AtkBuff");
         }
     }
@@ -205,19 +210,19 @@ public class BattleSystem : MonoBehaviour
         else if (state == BattleState.PLAYERTURN1)
         {
             playerUnit1.ChangeAttack(4);
-            wordArray[1] = 7;
+            wordArray[1] = RhythmManager.SKJALDBUFF;
             Debug.Log("Player1: DefBuff");
         }
         else if (state == BattleState.PLAYERTURN2)
         {
             playerUnit2.ChangeAttack(4);
-            wordArray[3] = 7;
+            wordArray[3] = RhythmManager.SKJALDBUFF;
             Debug.Log("Player2: DefBuff");
         }
         else if (state == BattleState.PLAYERTURN3)
         {
             playerUnit3.ChangeAttack(4);
-            wordArray[5] = 7;
+            wordArray[5] = RhythmManager.SKJALDBUFF;
             Debug.Log("Player3: DefBuff");
         }
     }

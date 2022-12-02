@@ -15,7 +15,6 @@ using UnityEditor;
 //7 - skjalBor  def buff
 
 
-
 public class RhythmManager : MonoBehaviour
 {
     //prefabs to instantiate
@@ -46,14 +45,15 @@ public class RhythmManager : MonoBehaviour
 
     //words
     words[] wordlist = new words[9];
-    //words[0] nekki;
-    //words[1] feldr;
-    //words[2] vatn;
-    //words[3] jord;
-    //words[4] ordomr;
-    //words[5] vardVeita;
-    //words[6] sarLiga;
-    //words[7] skjalBor;
+
+    public const int NEKKINULL = 0;
+    public const int FELDRFIRE = 1;
+    public const int VATNWATER = 2;
+    public const int JORDEARTH = 3;
+    public const int ORDOMROFF = 4;
+    public const int VARDDEF = 5;
+    public const int SARABUFF = 6;
+    public const int SKJALDBUFF = 7;
 
     // Start is called before the first frame update
     void Start()
@@ -62,30 +62,30 @@ public class RhythmManager : MonoBehaviour
         worldXwidth = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0)).x - Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x;
 
         //load words (yeah data entry)
-        wordlist[0].sound = Resources.Load<AudioClip>("wordSounds/nekki");
-        wordlist[0].timeBefore = 0.16f;
-        wordlist[0].timeAfter = 0.5f - wordlist[0].timeBefore;
-        wordlist[1].sound = Resources.Load<AudioClip>("wordSounds/feldr");
-        wordlist[1].timeBefore = 0.05f;
-        wordlist[1].timeAfter = 0.5f - wordlist[1].timeBefore;
-        wordlist[2].sound = Resources.Load<AudioClip>("wordSounds/vatn");
-        wordlist[2].timeBefore = 0.12f;
-        wordlist[2].timeAfter = 0.5f - wordlist[2].timeBefore;
-        wordlist[3].sound = Resources.Load<AudioClip>("wordSounds/jord");
-        wordlist[3].timeBefore = 0.18f;
-        wordlist[3].timeAfter = 0.5f - wordlist[3].timeBefore;
-        wordlist[4].sound = Resources.Load<AudioClip>("wordSounds/ordomr");
-        wordlist[4].timeBefore = 0.35f;
-        wordlist[4].timeAfter = 0.7f - wordlist[4].timeBefore;
-        wordlist[5].sound = Resources.Load<AudioClip>("wordSounds/vard-veita");
-        wordlist[5].timeBefore = 0.22f;
-        wordlist[5].timeAfter = 0.5f - wordlist[5].timeBefore;
-        wordlist[6].sound = Resources.Load<AudioClip>("wordSounds/sar-liga");
-        wordlist[6].timeBefore = 0.38f;
-        wordlist[6].timeAfter = 0.7f - wordlist[6].timeBefore;
-        wordlist[7].sound = Resources.Load<AudioClip>("wordSounds/skjal-bor");
-        wordlist[7].timeBefore = 0.27f;
-        wordlist[7].timeAfter = 0.7f - wordlist[7].timeAfter;
+        wordlist[NEKKINULL].sound = Resources.Load<AudioClip>("wordSounds/nekki");
+        wordlist[NEKKINULL].timeBefore = 0.16f;
+        wordlist[NEKKINULL].timeAfter = 0.5f - wordlist[0].timeBefore;
+        wordlist[FELDRFIRE].sound = Resources.Load<AudioClip>("wordSounds/feldr");
+        wordlist[FELDRFIRE].timeBefore = 0.05f;
+        wordlist[FELDRFIRE].timeAfter = 0.5f - wordlist[1].timeBefore;
+        wordlist[VATNWATER].sound = Resources.Load<AudioClip>("wordSounds/vatn");
+        wordlist[VATNWATER].timeBefore = 0.12f;
+        wordlist[VATNWATER].timeAfter = 0.5f - wordlist[2].timeBefore;
+        wordlist[JORDEARTH].sound = Resources.Load<AudioClip>("wordSounds/jord");
+        wordlist[JORDEARTH].timeBefore = 0.18f;
+        wordlist[JORDEARTH].timeAfter = 0.5f - wordlist[3].timeBefore;
+        wordlist[ORDOMROFF].sound = Resources.Load<AudioClip>("wordSounds/ordomr");
+        wordlist[ORDOMROFF].timeBefore = 0.35f;
+        wordlist[ORDOMROFF].timeAfter = 0.7f - wordlist[4].timeBefore;
+        wordlist[VARDDEF].sound = Resources.Load<AudioClip>("wordSounds/vard-veita");
+        wordlist[VARDDEF].timeBefore = 0.22f;
+        wordlist[VARDDEF].timeAfter = 0.5f - wordlist[5].timeBefore;
+        wordlist[SARABUFF].sound = Resources.Load<AudioClip>("wordSounds/sar-liga");
+        wordlist[SARABUFF].timeBefore = 0.38f;
+        wordlist[SARABUFF].timeAfter = 0.7f - wordlist[6].timeBefore;
+        wordlist[SKJALDBUFF].sound = Resources.Load<AudioClip>("wordSounds/skjal-bor");
+        wordlist[SKJALDBUFF].timeBefore = 0.27f;
+        wordlist[SKJALDBUFF].timeAfter = 0.7f - wordlist[7].timeAfter;
         wordlist[8].sound= Resources.Load<AudioClip>("wordSounds/halfSecSil");
 
 
