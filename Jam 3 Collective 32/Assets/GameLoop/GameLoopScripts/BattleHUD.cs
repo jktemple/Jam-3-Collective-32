@@ -9,14 +9,22 @@ public class BattleHUD : MonoBehaviour
 {
     public Text nameText;   // Unit Name Attribute
     public Slider hpSlider; // Unit HP Slider Attribute
+    public Unit unit;
 
-    // Function: SetHUD
-    // Description: Initializes Battle HUD with Unit Information
-    public void SetHUD(Unit unit)
-    {
-        nameText.text = unit.unitName;
+    public void Awake(){
+        if(unit){
+         nameText.text = unit.unitName;
         hpSlider.maxValue = unit.maxHP;
         hpSlider.value = unit.currentHP;
+        }
+    }
+    // Function: SetHUD
+    // Description: Initializes Battle HUD with Unit Information
+    public void SetHUD(Unit u)
+    {
+        nameText.text = u.unitName;
+        hpSlider.maxValue = u.maxHP;
+        hpSlider.value = u.currentHP;
     }
 
     // Function: SetHP
