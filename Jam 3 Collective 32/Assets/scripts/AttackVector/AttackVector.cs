@@ -56,6 +56,7 @@ public class AttackVector : MonoBehaviour
     //later instantiate the particle system as a child of the attack sprite
     void Start()
     {
+        print("attack vector!!!");
         startPos = this.transform.position;
         endPos = target.GetComponent<Transform>().position;
 

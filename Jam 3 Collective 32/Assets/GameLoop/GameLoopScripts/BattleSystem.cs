@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.Universal;
+
 
 // Game State Enum
 public enum BattleState { START, PLAYERTURN1, PLAYERTURN2, PLAYERTURN3, RHYTHMTURN ,PLAYERATTACK, ENEMYTURN, WON, LOST}
@@ -13,8 +15,24 @@ public class BattleSystem : MonoBehaviour
 {
     //Animators
     Animator bossAnimator;
-    
+
+    //lights
+    public GameObject Aura;
+    public Color FireColor;
+    public Color WaterColor;
+    public Color EarthColor;
+
+    private Color currentColor; 
+
+
+
     // Prefab Declaration
+
+
+    public GameObject fireProjectile;
+    public GameObject waterProjectile;
+    public GameObject earthProjectile;
+    
     public GameObject playerPrefab1;
     public GameObject playerPrefab2;
     public GameObject playerPrefab3;
@@ -27,6 +45,11 @@ public class BattleSystem : MonoBehaviour
     Unit playerUnit2;
     Unit playerUnit3;
     Unit bossUnit;
+    public GameObject bossTarg; 
+    public GameObject playerF;
+    public GameObject playerW;
+    public GameObject playerE;
+
 
     // Dialogue Box Declaration
     public Text dialogueText;
@@ -51,9 +74,44 @@ public class BattleSystem : MonoBehaviour
     // Game Start - Starts Game
     void Start()
     {
+        print("test");
+        
         // BattleState = START
         state = BattleState.START;
         StartCoroutine(SetupBattle());
+        currentColor = Aura.GetComponent<Light2D>().color;
+    }
+
+
+
+    public static float EaseInOutQuart(float start, float end, float value)
+    {
+        value /= .5f;
+        end -= start;
+        if (value < 1) return end * 0.5f * value * value * value * value + start;
+        value -= 2;
+        return -end * 0.5f * (value * value * value * value - 2) + start;
+    }
+
+    IEnumerator ChangeColor(Color oldcolor, Color newcolor, GameObject light, float duration){
+        float time = 0.0f;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+
+
+            float r = EaseInOutQuart(oldcolor.r, newcolor.r, time / duration);
+            float g = EaseInOutQuart(oldcolor.g, newcolor.g, time / duration);
+            float b = EaseInOutQuart(oldcolor.b, newcolor.b, time / duration);
+            
+            
+            light.GetComponent<Light2D>().color = new Color(r, g, b);
+
+
+            yield return null;
+        }
+        currentColor = light.GetComponent<Light2D>().color;
     }
 
     // SetupBattle - Initializes Necessary Entities
@@ -75,19 +133,23 @@ public class BattleSystem : MonoBehaviour
         int currentElement = bossUnit.GetElement();
         string trigger = "BossTo"; 
         if(currentElement == 0){
+            print("color change to red!");
+            StartCoroutine(ChangeColor(currentColor, FireColor, Aura, 2f));
             trigger += "Fire";
         } else if(currentElement == 1){
             trigger += "Water";
+            StartCoroutine(ChangeColor(currentColor, WaterColor, Aura, 2f));
         } else {
             trigger += "Earth";
+            StartCoroutine(ChangeColor(currentColor, EarthColor, Aura, 2f));
         }
-
+        
         if(currentStance == 1){
             trigger+="Offense";
         } else if(currentStance == 2){
             trigger+="Defense";
         }
-        Debug.Log("trigger = " + trigger);
+       // Debug.Log("trigger = " + trigger);
         bossAnimator.SetTrigger(trigger);
 
         // Sets initial dialogue text
@@ -106,6 +168,44 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.PLAYERTURN1;
         PlayerTurn();
     }
+
+    public void Firespell(GameObject unit){
+
+        print("fire spell activated");
+        Vector3 startPos =  unit.transform.position;
+
+        GameObject attack = Instantiate(fireProjectile, startPos, Quaternion.identity);
+
+        attack.GetComponent<AttackVector>().target = bossTarg;
+
+    }
+
+    
+    public void Earthspell(GameObject unit){
+
+        print("fire spell activated");
+        Vector3 startPos =  unit.transform.position;
+
+        GameObject attack = Instantiate(earthProjectile, startPos, Quaternion.identity);
+
+        attack.GetComponent<AttackVector>().target = bossTarg;
+
+    }
+
+    
+    public void Waterspell(GameObject unit){
+
+        print("fire spell activated");
+        Vector3 startPos =  unit.transform.position;
+
+        GameObject attack = Instantiate(waterProjectile, startPos, Quaternion.identity);
+
+        attack.GetComponent<AttackVector>().target = bossTarg;
+
+    }
+
+
+
 
     // PlayerTurn - Sets dialogue and waits for player's option selection
     void PlayerTurn()
@@ -155,19 +255,19 @@ public class BattleSystem : MonoBehaviour
         {
             playerUnit1.ChangeAttack(1);
             wordArray[1] = RhythmManager.ORDOMROFF;
-            Debug.Log("Player1: Offensive");
+         //   Debug.Log("Player1: Offensive");
         }
         else if (state == BattleState.PLAYERTURN2)
         {
             playerUnit2.ChangeAttack(1);
             wordArray[3] = RhythmManager.ORDOMROFF;
-            Debug.Log("Player2: Offensive");
+        //    Debug.Log("Player2: Offensive");
         }
         else if (state == BattleState.PLAYERTURN3)
         {
             playerUnit3.ChangeAttack(1);
             wordArray[5] = RhythmManager.ORDOMROFF;
-            Debug.Log("Player3: Offensive");
+        //    Debug.Log("Player3: Offensive");
         }
     }
 
@@ -182,19 +282,19 @@ public class BattleSystem : MonoBehaviour
         {
             playerUnit1.ChangeAttack(2);
             wordArray[1] = RhythmManager.VARDDEF;
-            Debug.Log("Player1: Defensive");
+         //   Debug.Log("Player1: Defensive");
         }
         else if (state == BattleState.PLAYERTURN2)
         {
             playerUnit2.ChangeAttack(2);
             wordArray[3] = RhythmManager.VARDDEF;
-            Debug.Log("Player2: Defensive");
+        //    Debug.Log("Player2: Defensive");
         }
         else if (state == BattleState.PLAYERTURN3)
         {
             playerUnit3.ChangeAttack(2);
             wordArray[5] = RhythmManager.VARDDEF;
-            Debug.Log("Player3: Defensive");
+         //   Debug.Log("Player3: Defensive");
         }
     }
 
@@ -209,19 +309,19 @@ public class BattleSystem : MonoBehaviour
         {
             playerUnit1.ChangeAttack(3);
             wordArray[1] = RhythmManager.SARABUFF;
-            Debug.Log("Player1: AtkBuff");
+          //  Debug.Log("Player1: AtkBuff");
         }
         else if (state == BattleState.PLAYERTURN2)
         {
             playerUnit2.ChangeAttack(3);
             wordArray[3] = RhythmManager.SARABUFF;
-            Debug.Log("Player2: AtkBuff");
+        //    Debug.Log("Player2: AtkBuff");
         }
         else if (state == BattleState.PLAYERTURN3)
         {
             playerUnit3.ChangeAttack(3);
             wordArray[5] = RhythmManager.SARABUFF;
-            Debug.Log("Player3: AtkBuff");
+        //    Debug.Log("Player3: AtkBuff");
         }
     }
 
@@ -236,19 +336,19 @@ public class BattleSystem : MonoBehaviour
         {
             playerUnit1.ChangeAttack(4);
             wordArray[1] = RhythmManager.SKJALDBUFF;
-            Debug.Log("Player1: DefBuff");
+        //    Debug.Log("Player1: DefBuff");
         }
         else if (state == BattleState.PLAYERTURN2)
         {
             playerUnit2.ChangeAttack(4);
             wordArray[3] = RhythmManager.SKJALDBUFF;
-            Debug.Log("Player2: DefBuff");
+         //   Debug.Log("Player2: DefBuff");
         }
         else if (state == BattleState.PLAYERTURN3)
         {
             playerUnit3.ChangeAttack(4);
             wordArray[5] = RhythmManager.SKJALDBUFF;
-            Debug.Log("Player3: DefBuff");
+        //    Debug.Log("Player3: DefBuff");
         }
     }
 
@@ -297,10 +397,13 @@ public class BattleSystem : MonoBehaviour
         {
             // Offensive
             case 1:
+                print("case hit");
+                Firespell(playerF);
                 if (bossUnit.GetStance() == 2)
                 {
                     if (bossUnit.GetWeakness() == playerUnit1.GetElement()) // Super Effective Attack on Defensive Stance
                     {
+                        
                         dmgMultipler = 1;
                         dialogueText.text = "The Flame Wizard's attack PENETRATES THE BOSS'S DEFENSES!";
                     } else // Effective / Not Very Effective Attack on Defensive Stance
@@ -356,11 +459,11 @@ public class BattleSystem : MonoBehaviour
                 dmgMultipler = 0;
                 break;
         }
-        Debug.Log("Dmg Mult P1: " + dmgMultipler);
+       // Debug.Log("Dmg Mult P1: " + dmgMultipler);
         bossUnit.TakeDamage(rhythmSystem.score * dmgMultipler * playerUnit1.damage);
         isDead = bossUnit.CheckDead();
         bossHUD.SetHP(bossUnit.currentHP);
-        Debug.Log("Boss: " + bossUnit.currentHP);
+       // Debug.Log("Boss: " + bossUnit.currentHP);
         CheckDead(isDead);
         playerPrefab1.GetComponent<Animator>().SetTrigger("Attack");
         yield return new WaitForSeconds(2f);
@@ -371,6 +474,7 @@ public class BattleSystem : MonoBehaviour
         {
             // Offensive
             case 1:
+            Waterspell(playerW);
                 if (bossUnit.GetStance() == 2)
                 {
                     if (bossUnit.GetWeakness() == playerUnit2.GetElement()) // Super Effective Attack on Defensive Stance
@@ -434,11 +538,11 @@ public class BattleSystem : MonoBehaviour
                 dmgMultipler = 0;
                 break;
         }
-        Debug.Log("Dmg Mult P2: " + dmgMultipler);
+       // Debug.Log("Dmg Mult P2: " + dmgMultipler);
         bossUnit.TakeDamage(rhythmSystem.score * dmgMultipler * playerUnit2.damage);
         isDead = bossUnit.CheckDead();
         bossHUD.SetHP(bossUnit.currentHP);
-        Debug.Log("Boss: " + bossUnit.currentHP);
+        //.Log("Boss: " + bossUnit.currentHP);
         CheckDead(isDead);
         playerPrefab2.GetComponent<Animator>().SetTrigger("Attack");
         yield return new WaitForSeconds(2f);
@@ -449,6 +553,7 @@ public class BattleSystem : MonoBehaviour
         {
             // Offensive
             case 1:
+            Earthspell(playerE);
                 if (bossUnit.GetStance() == 2)
                 {
                     if (bossUnit.GetWeakness() == playerUnit3.GetElement()) // Super Effective Attack on Defensive Stance
@@ -512,11 +617,11 @@ public class BattleSystem : MonoBehaviour
                 dmgMultipler = 0;
                 break;
         }
-        Debug.Log("Dmg Mult P3: " + dmgMultipler);
+        //Debug.Log("Dmg Mult P3: " + dmgMultipler);
         bossUnit.TakeDamage(rhythmSystem.score * dmgMultipler * playerUnit3.damage);
         isDead = bossUnit.CheckDead();
         bossHUD.SetHP(bossUnit.currentHP);
-        Debug.Log("Boss: " + bossUnit.currentHP);
+        //Debug.Log("Boss: " + bossUnit.currentHP);
         CheckDead(isDead);
         playerPrefab3.GetComponent<Animator>().SetTrigger("Attack");
         yield return new WaitForSeconds(2f);
@@ -806,11 +911,11 @@ public class BattleSystem : MonoBehaviour
         }
 
         playerHUD1.SetHP(playerUnit1.currentHP);
-        Debug.Log("Player 1: " + playerUnit1.currentHP);
+       // Debug.Log("Player 1: " + playerUnit1.currentHP);
         playerHUD2.SetHP(playerUnit2.currentHP);
-        Debug.Log("Player 2: " + playerUnit2.currentHP);
+        //Debug.Log("Player 2: " + playerUnit2.currentHP);
         playerHUD3.SetHP(playerUnit3.currentHP);
-        Debug.Log("Player 3: " + playerUnit3.currentHP);
+        //Debug.Log("Player 3: " + playerUnit3.currentHP);
 
         bool isDead = playerUnit1.CheckDead() && playerUnit2.CheckDead() && playerUnit3.CheckDead();
         CheckDead(isDead);
@@ -825,11 +930,15 @@ public class BattleSystem : MonoBehaviour
         int currentElement = bossUnit.GetElement();
         string trigger = "BossTo"; 
         if(currentElement == 0){
+            print("color change to red!");
+            StartCoroutine(ChangeColor(currentColor, FireColor, Aura, 2f));
             trigger += "Fire";
         } else if(currentElement == 1){
             trigger += "Water";
+            StartCoroutine(ChangeColor(currentColor, WaterColor, Aura, 2f));
         } else {
             trigger += "Earth";
+            StartCoroutine(ChangeColor(currentColor, EarthColor, Aura, 2f));
         }
 
         if(currentStance == 1){
@@ -837,7 +946,7 @@ public class BattleSystem : MonoBehaviour
         } else if(currentStance == 2){
             trigger+="Defense";
         }
-        Debug.Log("trigger = " + trigger);
+        //Debug.Log("trigger = " + trigger);
         bossAnimator.SetTrigger(trigger);
 
         ResetRound();

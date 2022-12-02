@@ -360,6 +360,10 @@ PrefabInstance:
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 6868907091861745070, guid: 48e04890830edc148a2880e624624c1f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6868907091861745070, guid: 48e04890830edc148a2880e624624c1f, type: 3}
       propertyPath: m_RenderAlignment
       value: 3
       objectReference: {fileID: 0}
