@@ -47,11 +47,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Boss
-  stance: 0
-  element: 0
-  damage: 10
   maxHP: 300
   currentHP: 300
+  stance: 2
+  element: 0
+  weakness: 1
+  attack: 0
+  atkBuff: 0
+  defBuff: 0
+  damage: 10
   words: []
 --- !u!212 &7916775747655281358
 SpriteRenderer:
