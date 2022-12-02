@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9a0c627159475440bb226b6b9259398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: VIRTOUS HERO
+  unitName: VIRTUOUS HERO
   maxHP: 300
   currentHP: 300
   stance: 2
