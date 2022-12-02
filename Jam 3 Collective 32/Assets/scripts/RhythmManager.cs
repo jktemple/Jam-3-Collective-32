@@ -5,14 +5,14 @@ using UnityEditor;
 
 //TO use:
 //call "wordParse(input)" where input is an array of ints as follows:
-//0 - nekki;
-//1 - feldr;
-//2 - vatn;
-//3 - jord;
-//4 - ordomr;
-//5 - vardVeita;
-//6 - sarLiga;
-//7 - skjalBor;
+//0 - nekki     void
+//1 - feldr     fire
+//2 - vatn      water
+//3 - jord      earth
+//4 - ordomr    offensive
+//5 - vardVeita defensive
+//6 - sarLiga   atk buff
+//7 - skjalBor  def buff
 
 
 
@@ -45,7 +45,7 @@ public class RhythmManager : MonoBehaviour
     Queue<int> wordRef = new Queue<int>();
 
     //words
-    words[] wordlist = new words[8];
+    words[] wordlist = new words[9];
     //words[0] nekki;
     //words[1] feldr;
     //words[2] vatn;
@@ -86,6 +86,7 @@ public class RhythmManager : MonoBehaviour
         wordlist[7].sound = Resources.Load<AudioClip>("wordSounds/skjal-bor");
         wordlist[7].timeBefore = 0.27f;
         wordlist[7].timeAfter = 0.7f - wordlist[7].timeAfter;
+        wordlist[8].sound= Resources.Load<AudioClip>("wordSounds/halfSecSil");
 
 
         //////////////////////////
@@ -192,8 +193,10 @@ public class RhythmManager : MonoBehaviour
     {
         done = false;
         List<float> outTimes = new List<float>();
-        float temp = 0;
-        foreach(int wordNum in inputArray)
+        float temp = 1;
+        wordRef.Enqueue(8);
+        wordRef.Enqueue(8);
+        foreach (int wordNum in inputArray)
         {
             wordRef.Enqueue(wordNum);
             outTimes.Add(temp+wordlist[wordNum].timeBefore);
